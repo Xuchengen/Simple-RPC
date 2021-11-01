@@ -11,7 +11,7 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket = new ServerSocket(9999);
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             Socket socket = serverSocket.accept();
             threadPool.submit(new ClientSocketHandler(socket));
         }
